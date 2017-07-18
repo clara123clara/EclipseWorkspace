@@ -7,11 +7,19 @@ Created on 2017年6月27日
 import urllib.request
 
 
-urldata = " http://www.baidu.com/"
-print()
-s_save=urllib.request.urlopen(urldata).read()
+urldata = "http://www.baidu.com/"
 
+s_save=urllib.request.urlopen(urldata).read()
 print(s_save)
+
+if urldata=="http://www.baidu.com/":
+    print("输入的百度页面")
+else:
+    print("输入浏览器地址错误！！！")
+
+    
+
+
 
 
 '''
