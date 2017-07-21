@@ -28,6 +28,14 @@ def test_login():
     print(requestsend.text)
     print(requestsend.status_code)
     
+    
+    #获取返回的json数据
+    s=json.loads(requestsend.text)
+    print(s.keys())
+    print(s['data'])
+    print(s['data']['returnUrl'])
+    
+    
     '''
             获取cookies,并通过正则表达式分别获取想要的值
     '''
