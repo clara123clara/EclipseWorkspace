@@ -13,7 +13,7 @@ import HTMLTestRunner
 import time
 
 
-import test_PackageClass
+import data_Test.loadJsonData
 
 #构造测试集  
 suite = unittest.TestSuite() #实例化  （实例化测试套件）

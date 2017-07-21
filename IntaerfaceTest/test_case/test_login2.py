@@ -7,10 +7,8 @@ import requests
 import json
 import unittest
 import re
-from TestData.loadJsonData import *
+from subprocess import call
 
-jsonData=loadData()
-userAccount=jsonData.loadUserName()
 
 class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和还原的类  
     '''接口名称：用户登陆 '''
@@ -28,15 +26,13 @@ class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和�
         
         self.data={
             "returnUrl":"",
-            "userVo.loginName":userAccount[0]['loginname'],
-            "userVo.password":userAccount[0]['password']
+            "userVo.loginName":"chenjiajia",
+            "userVo.password":"ac1e1f9138e18dcca01311bd10abecf5"
             }
         self.r=requests.post(url=self.url, data=self.data)
         
         print(self.r.text)
         print(self.r.status_code)
-        print(userAccount[0]['loginname'])
-        print(userAccount[0]['password'])
         
         #正确反馈的json数据
         s=json.loads(self.r.text)
@@ -56,15 +52,10 @@ class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和�
         #print(self.r.text)
         #print(self.r.status_code)
         self.assertIn("/honeybee/personcenter/index.do",self.r.text)
-     
         
 if __name__ == '__main__':
     # unittest.main()
     #test_loginTest("setUp")
     a = test_loginTest()
-    a.test_login_Name_right();   
-    
-        
-        
-        
+    a.test_login_Name_right();    
         
