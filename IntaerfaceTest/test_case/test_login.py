@@ -23,6 +23,7 @@ class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和�
         ''' 测试用例：用户名和密码都正确'''
         self.url="http://www.geneedu.cn/honeybee/passport/login/logon.do"
         self.header={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
+        
         self.data={
             "returnUrl":"",
             "userVo.loginName":"chenjiajia",
