@@ -12,7 +12,7 @@ from TestData.loadJsonData import *
 jsonData=loadData()
 userAccount=jsonData.loadUserName()
 
-class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和还原的类  
+class test_loginClass(unittest.TestCase):     #封装测试环境的初始化和还原的类  
     '''接口名称：用户登陆 '''
     def setUp(self):                 #放对数据可操作的代码，如对mysql、momgodb的初始化等,这里不对数据库进行操作！  
         print("start test")  
@@ -20,49 +20,51 @@ class test_loginTest(unittest.TestCase):     #封装测试环境的初始化和�
     def tearDown(self):             #与setUp()相对  
         print("end test")  
         pass  
-        
-    def test_login_Name_right(self):
-        ''' 测试用例：用户名和密码都正确'''
+      
+    def test_login(self,userName,userPasswd):
+        ''' 循环测试用例 '''
+        print("取数据测试每个测试用例")
         self.url="http://www.geneedu.cn/honeybee/passport/login/logon.do"
         self.header={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
-        
+        print(len(userAccount))
         self.data={
             "returnUrl":"",
-            "userVo.loginName":userAccount[0]['loginname'],
-            "userVo.password":userAccount[0]['password']
+            "userVo.loginName":userName,
+            "userVo.password":userPasswd
             }
         self.r=requests.post(url=self.url, data=self.data)
-        
         print(self.r.text)
-        print(self.r.status_code)
-        print(userAccount[0]['loginname'])
-        print(userAccount[0]['password'])
-        
         #正确反馈的json数据
         s=json.loads(self.r.text)
         responseData=s['data']['returnUrl']
-        #断言数据是否正确
-        self.assertIn("/honeybee/personcenter/index.do",self.r.text)
+        #self.assertIn("/honeybee/personcenter/index.do",self.r.text)
+        print(userName)
+        print(userPasswd)
         
-    def test_login_Name_error(self):
-        self.url="http://www.geneedu.cn/honeybee/passport/login/logon.do"
-        self.header={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
-        self.data={
-            "returnUrl":"",
-            "userVo.loginName":"chenjiajia1",
-            "userVo.password":"error"
-            }
-        self.r=requests.post(url=self.url, data=self.data)
-        #print(self.r.text)
-        #print(self.r.status_code)
-        self.assertIn("/honeybee/personcenter/index.do",self.r.text)
+    def test_do(self):    
+        for i in range(len(userAccount)):
+            print("现在的循环次数为：",i)
+            aa=userAccount[i]['loginname']
+            bb=userAccount[i]['password']
+            a.test_login(aa,bb)
+        print("打印完成")
+
+        
      
         
 if __name__ == '__main__':
     # unittest.main()
     #test_loginTest("setUp")
-    a = test_loginTest()
-    a.test_login_Name_right();   
+    aa={}
+    bb={}
+    a = test_loginClass()
+    a.test_login_Name_right()
+    for i in range(len(userAccount)):
+        print("现在的循环次数为：",i)
+        aa=userAccount[i]['loginname']
+        bb=userAccount[i]['password']
+        a.test_login(aa,bb)
+    print("打印完成")
     
         
         

@@ -12,18 +12,29 @@ import requests
 import HTMLTestRunner 
 import time
 
+from test_case.test_login import *
 
-import data_Test.loadJsonData
+
 
 #构造测试集  
 suite = unittest.TestSuite() #实例化  （实例化测试套件）
+#suite.addTest(test_loginClass("test_login"))
+
+
+for i in range(len(userAccount)):
+    print("现在的循环次数为：",i)
+    suite.addTest(test_loginClass("test_do"))
+print("打印完成")
+
+
 
 #TestSuite类的addTest()方法把不同测试类中的测试方法组装到测试套件中。  
 #增加测试用例==》接口文件名.接口类(方法也就是这个接口的其他用例),要把每一个测试用例都增加进来！！！ 
 
 #将测试用例加载到测试套件中，执行顺序是安装加载顺序
-suite.addTest(test_PackageClass.test_loginTest("test_login_Name_right"))
-suite.addTest(test_PackageClass.test_loginTest("test_login_Name_error"))
+#suite.addTest(test_PackageClass.test_loginTest("test_login_Name_right"))
+#suite.addTest(test_PackageClass.test_loginTest("test_login_Name_error"))
+
 #执行测试用例，实例化TextTestRunner类
 #runner=unittest.TextTestRunner()
 #使用run()方法运行测试套件（即运行测试套件中的所有用例）
@@ -43,16 +54,19 @@ runner.run(discover)
 '''
 
 if __name__ == '__main__':
+    
+    test_dir = "G:\\EclipseWorkspace\\IntaerfaceTest\\test_case"  
+    test_report = "G:\\EclipseWorkspace\\IntaerfaceTest\\test_report" 
 
     #按照一定的格式获取当前的时间   
     now = time.strftime("%Y-%m-%d %H_%M_%S")  
                  
     #定义报告存放路径     
-    filename = './' + now + 'test_result.html'  
+    filename = test_report + "\\" + now + 'result.html'   
     fp = open(filename,"wb")   
                  
     #定义测试报告  
-    runner = HTMLTestRunner.HTMLTestRunner(stream = fp,verbosity=1,title = "登陆接口测试报告",description = '测试用例执行情况')   
+    runner = HTMLTestRunner.HTMLTestRunner(stream = fp,title = "登陆接口测试报告",description = '测试用例执行情况')   
       
     #运行测试   
     runner.run(suite)  
