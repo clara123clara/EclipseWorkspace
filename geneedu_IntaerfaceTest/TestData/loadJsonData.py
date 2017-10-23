@@ -9,7 +9,7 @@ import json
 class loadData():
 
     def loadUserName(self):
-        f=open("G:\EclipseWorkspace\IntaerfaceTest\TestData\loginName.json",encoding='utf-8')
+        f=open("..\TestData\loginName.json",encoding='utf-8')
         accout=json.load(f)
         f.close
         print(accout)

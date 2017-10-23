@@ -4,9 +4,14 @@ Created on 2017年6月28日
 @author: Administrator
 '''
 
+'''
+import requests
+2 response_get = requests.get(url, data, headers, cookies)
+3 response_post = requests.post(url, data, headers, cookies)
+'''
+
 import requests
 import json
-
 
 
 if __name__ == '__main__':

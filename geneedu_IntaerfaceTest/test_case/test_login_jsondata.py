@@ -58,7 +58,6 @@ if __name__ == '__main__':
     aa={}
     bb={}
     a = test_loginClass()
-    a.test_login_Name_right()
     for i in range(len(userAccount)):
         print("现在的循环次数为：",i)
         aa=userAccount[i]['loginname']

@@ -4,6 +4,9 @@ Created on 2017年6月27日
 @author: Administrator
 '''
 
+'''
+使用urllib一get和post方式访问提交
+'''
 import urllib.request
 
 
